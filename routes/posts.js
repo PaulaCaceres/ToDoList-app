@@ -4,8 +4,6 @@ const Post = require('../models/Post');
 
 //Submits a Post
 router.post('/', async (req, res) => {
-    console.log(req.body);
-    
     const post = new Post({
         title: req.body.title,
         done: req.body.done
@@ -30,7 +28,6 @@ router.delete('/:postId', async (req, res) => {
 
 //Update a Post
 router.patch('/:postId', async (req, res) => {
-    console.log(req.body);
     try {
         const updatedPost = await Post.updateOne(
             { _id: req.params.postId}, 

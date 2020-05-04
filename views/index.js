@@ -11,7 +11,6 @@ app.controller('todoController', function ($scope, $http) {
         })
     }
 
-
     list.addTodo = async function () {
         list.newTodoBody = { 'title': list.newTodo, 'done': false };
         await $http.post(`/posts`, list.newTodoBody).then(function (req, res) { })
@@ -33,7 +32,6 @@ app.controller('todoController', function ($scope, $http) {
         list.editedTodoStatus = { 'title': todo.title, 'done': !(todo.done) };
         await $http.patch(`/posts/${todo.id}`, list.editedTodoStatus).then(function (res) {
         })
-
         refresh();
     }
 
@@ -54,7 +52,6 @@ app.controller('todoController', function ($scope, $http) {
         list.editedTodoBody = { 'title': list.editedTitle };
         await $http.patch(`/posts/${list.editedId}`, list.editedTodoBody).then(function (res) {
         })
-
         refresh();
     }
 });

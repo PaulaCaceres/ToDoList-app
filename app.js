@@ -23,17 +23,10 @@ const getsRoute = require('./routes/gets');
 app.use('/posts', postsRoute);
 app.use('/todos', getsRoute);
 
-//Settings
-// app.set('port', process.env.PORT || 3000);
-
 //Routes
 app.get('/', (req, res) => {
     res.send('We are on home');
 });
 
 //Listen to the server
-/*app.listen(app.get('port'), () => {
-    console.log(`Server on port ${app.get('port')}`);
-});
-*/
 app.listen(3000);
