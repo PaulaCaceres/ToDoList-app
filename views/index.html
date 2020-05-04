@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="ToDo">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="icon" href="styles/images/bookmark_border-black-18dp.svg" type="image/gif" sizes="16x16">
+  <title>PaulaCaceres-ToDoApp</title>
+  <!-- Styles -->
+  <link rel="stylesheet" type="text/css" href="./node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles/style.css">
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Muli&display=swap" rel="stylesheet">
+  <!--   <link href="https://fonts.googleapis.com/css?family=Raleway:400,400i,600&display=swap" rel="stylesheet"> -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script src="./node_modules/angular/angular.min.js"></script>
+  <script src="index.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-brand nav-title">
+      <span class="material-icons bookmark-icon d-inline-block align-middle">bookmark_border</span>
+      <h1 class="user-title m-0 align-middle">User's Tasks</h1>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div ng-controller="todoController as list">
+      <div class="row mb-4">
+        <form name="form" ng-submit="list.addTodo()" class="add-task col-12 col-md-8">
+          <div class="input-group mb-3">
+            <input type="text" name="newTodo" ng-model="list.newTodo" required placeholder="Task's title"
+              aria-label="Describe your task" aria-describedby="button-addon2" class="form-control add-task-title"
+              autocomplete="off">
+            <button ng-disabled="form.$invalid" class="btn btn-primary btn-add-task" id="button-addon2">
+              Add task
+            </button>
+          </div>
+        </form>
+        <div class="col-12 col-md-4 d-flex">
+          <button ng-click="list.clearCompleted()" class="btn btn-primary btn-clear-completed">Clear
+            completed</button>
+        </div>
+      </div>
+      <!-- ToDo list -->
+      <div class="container-fluid px-md-5">
+        <div class="row">
+          <ul class="todo-list w-100 p-0">
+            <li ng-repeat="todo in list.todos" class="list-li">
+              <div class="container-fluid align-middle">
+                <div class="row">
+                  <div class="col-7 col-md-10 todo-list-title">
+                    <div class="custom-control custom-checkbox">
+                      <input type="checkbox" ng-model="todo.checked" class="custom-control-input"
+                        id="customCheck{{todo.title}}" ng-click="list.markAsDone(todo)" ng-checked="todo.done">
+                      <!-- <span ng-if="checked">
+                        <input type="checkbox" checked ng-model="todo.notChecked" class="custom-control-input"
+                          id="customCheck{{todo.title}}" ng-click="list.markAsDone(todo.title, todo.id)">
+                      </span> -->
+                      <label ng-class="{'done':todo.done}" class="custom-control-label align-middle"
+                        for="customCheck{{todo.title}}">{{todo.title}}</label>
+                    </div>
+                  </div>
+                  <div class="btn-group col-5 col-md-2 todo-list-btns">
+                    <button class="btn btn-primary btn-edit mr-2 rounded" data-toggle="modal" data-target="#editModal"
+                      ng-model="list.todoToEdit" ng-click="list.selectTodoToEdit(todo.title, todo.id)">Edit</button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-hidden="true">
+                      <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                          <div class="modal-body">
+                            <form name="form-edit" class="add-task col-8">
+                              <div class="input-group mb-3">
+                                <input type="text" ng-model="list.editedTitle" required placeholder={{list.editedTitle}}
+                                  aria-describedby="button-save{{todo.id}}">
+                                <button class="btn btn-primary" data-dismiss="modal" id="button-save{{todo.id}}"
+                                  ng-click="list.editTodo(list.editedId)">Save
+                                  changes</button>
+                              </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <button ng-click="list.removeOne(todo.id)"
+                      class="btn btn-danger btn-remove ml-2 rounded">Remove</button>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- jQuery, Popper.js, Bootstrap -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+  integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+  integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+<!--
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+ -->
+
+
+</html>

@@ -1,0 +1,98 @@
+$navColor:#333745;
+$iconColor:#ffd054;
+$titleColor:white;
+$addBtn:#333745;
+$clearBtn:#77C4D3;
+$editBtn: #001bffa1;
+$removeBtn:#EA2E49;
+$textBtn: white;
+$doneColor: #77C4D3;
+$textFont: 'Muli', sans-serif;
+$titleFont: 'Lobster Two', cursive;
+
+
+body{
+    font-family: $textFont;
+}
+
+.navbar {
+    height: 13vh;
+    margin-bottom: 1rem;
+    background: $navColor!important;
+}
+
+.bookmark-icon {
+    font-size: 2em!important;
+    color: $iconColor;
+}
+
+.user-title {
+    font-size: 1.5rem;
+    font-family: $titleFont;
+    color: $titleColor;
+    display: inline-block;
+}
+
+.add-task {
+    padding: 0 3vw;
+    margin: 0;
+}
+
+.add-task-title {
+    width: 100%;
+    border-radius: .25em;
+}
+
+.btn-add-task {
+    background: $addBtn!important;
+    border: none;
+    /* margin-left: .3em; */
+}
+
+.btn-clear-completed {
+    background: $clearBtn!important;
+    border: none;
+    height: fit-content;
+    min-width: 80%;
+    max-width: 90%;
+    margin: auto;
+    margin-top: 0;
+}
+
+.list-li:hover {
+    background-color: #f7f7f7;
+}
+
+.todo-list {
+    list-style-type: none;
+    margin: 0;
+}
+
+.todo-list-title {
+    margin: 0;
+    padding: 0;
+    height: 3em;
+}
+
+.todo-list-btns {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.btn-edit {
+    background: $editBtn;
+    height: fit-content;
+    max-width: fit-content;
+}
+
+.btn-remove {
+    background: $removeBtn;
+    height: fit-content;
+    max-width: fit-content;
+}
+
+.done {
+    text-decoration: line-through;
+    color: $doneColor;
+}
